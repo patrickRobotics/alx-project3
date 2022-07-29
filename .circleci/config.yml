@@ -434,12 +434,12 @@ workflows:
       - build-frontend
       - test-frontend:
           requires: [build-frontend]
+      - scan-frontend:
+          requires: [build-frontend]
       - test-backend:
           requires: [build-backend]
       - scan-backend:
-          requires: [test-backend]
-      - scan-frontend:
-          requires: [test-frontend]
+          requires: [build-backend]
       # - deploy-infrastructure:
       #     requires: [test-frontend, test-backend, scan-frontend, scan-backend]
       #     filters:
