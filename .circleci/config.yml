@@ -339,7 +339,6 @@ jobs:
                       --no-paginate --output text)
             echo "Old Wokflow ID: $OLD_WORKFLOW_ID"
             curl https://kvdb.io/${KVDB_BUCKET}/old_workflow_id -d "${OLD_WORKFLOW_ID}" 
-            
       - run:
           name: Update cloudfront distribution
           command: |
@@ -432,9 +431,9 @@ workflows:
 
       - deploy-infrastructure:
           requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-          # filters:
-          #   branches:
-          #     only: [master]
+          filters:
+            branches:
+              only: [master]
 
       - configure-infrastructure:
           requires: [deploy-infrastructure]
